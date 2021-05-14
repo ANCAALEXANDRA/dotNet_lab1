@@ -23,9 +23,13 @@ namespace dotnet_lab1._1.Controllers
 
         // GET: api/Products
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts(int? minPrice)
         {
-            return await _context.Products.ToListAsync();
+            if(minPrice == null)
+            {
+                return await _context.Products.ToListAsync();
+            }
+            return await _context.Products.Where(p => p.Price >= minPrice).ToListAsync(); 
         }
 
         // GET: api/Products/5
