@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using dotnet_lab1._1.Data;
 using dotnet_lab1._1.Models;
+using dotnet_lab1._1.ViewModels;
 
 namespace dotnet_lab1._1.Controllers
 {
@@ -34,18 +35,26 @@ namespace dotnet_lab1._1.Controllers
 
         // GET: api/Products/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        public async Task<ActionResult<ProductViewModel>> GetProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);
+
+            // look at automapper
+            var productViewModel = new ProductViewModel
+            {
+                Type = product.Type,
+                Id = product.Id,
+                Name = product.Name,
+                Price = product.Price
+            };
 
             if (product == null)
             {
                 return NotFound();
             }
 
-            return product;
+            return productViewModel;
         }
-
         // PUT: api/Products/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
