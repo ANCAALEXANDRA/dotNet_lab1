@@ -14,7 +14,7 @@ export function getApiUrl() {
 
 const providers = [
   { provide: 'BASE_URL', useFactory: getBaseUrl, deps: [] },
-  { provide: 'APIURL', useFactory: getApiUrl, deps: [] }
+  { provide: 'API_URL', useFactory: getApiUrl, deps: [] }
 ];
 
 if (environment.production) {

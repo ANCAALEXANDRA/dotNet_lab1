@@ -14,7 +14,7 @@ namespace dotnet_lab1._1.Models
         [MinLength(3)]
         public string Type { get; set; }
 
-        [Range(10, Double.MaxValue)]
+        [Range(100, Double.MaxValue)]
         public double Price { get; set; }
         public Boolean WithBoots { get; set; }
     }

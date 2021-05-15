@@ -21,6 +21,14 @@ namespace dotnet_lab1._1.Controllers
         {
             _context = context;
         }
+        [HttpGet]
+        [Route("filter/{minPrice}")]
+        public ActionResult<IEnumerable<Product>> FilterProducts(int minPrice)
+        {
+            var query = _context.Products.Where(p => p.Price >= minPrice);
+            Console.WriteLine(query.ToQueryString());
+            return query.ToList();
+        }
 
         // GET: api/Products
         [HttpGet]
